@@ -1,0 +1,283 @@
+-- VHDL structural description generated from `adac_chip_ex`
+--		date : Wed Apr  1 20:33:59 2020
+
+
+-- Entity Declaration
+
+ENTITY adac_chip_ex IS
+  PORT (
+  vsse : linkage BIT ;	-- vsse
+  vss : linkage BIT ;	-- vss
+  vdde : linkage BIT ;	-- vdde
+  vdd : linkage BIT ;	-- vdd
+  sel1 : linkage BIT ;	-- sel1
+  sel0 : linkage BIT ;	-- sel0
+  s : linkage BIT_VECTOR(3 DOWNTO 0) ;	-- s
+  clk : linkage BIT ;	-- clk
+  c_4 : linkage BIT ;	-- c_4
+  a : linkage BIT_VECTOR(3 DOWNTO 0) 	-- a
+  );
+END adac_chip_ex;
+
+-- Architecture Declaration
+
+ARCHITECTURE VST OF adac_chip_ex IS
+  COMPONENT pvddick_sp
+    port (
+    vssi : linkage BIT ;	-- vssi
+    vsse : linkage BIT ;	-- vsse
+    vddi : linkage BIT ;	-- vddi
+    vdde : linkage BIT ;	-- vdde
+    cko : linkage BIT ;	-- cko
+    ck : linkage BIT 	-- ck
+    );
+  END COMPONENT;
+
+  COMPONENT pvddeck_sp
+    port (
+    vssi : linkage BIT ;	-- vssi
+    vsse : linkage BIT ;	-- vsse
+    vddi : linkage BIT ;	-- vddi
+    vdde : linkage BIT ;	-- vdde
+    cko : linkage BIT ;	-- cko
+    ck : linkage BIT 	-- ck
+    );
+  END COMPONENT;
+
+  COMPONENT pvssick_sp
+    port (
+    vssi : linkage BIT ;	-- vssi
+    vsse : linkage BIT ;	-- vsse
+    vddi : linkage BIT ;	-- vddi
+    vdde : linkage BIT ;	-- vdde
+    cko : linkage BIT ;	-- cko
+    ck : linkage BIT 	-- ck
+    );
+  END COMPONENT;
+
+  COMPONENT pvsseck_sp
+    port (
+    vssi : linkage BIT ;	-- vssi
+    vsse : linkage BIT ;	-- vsse
+    vddi : linkage BIT ;	-- vddi
+    vdde : linkage BIT ;	-- vdde
+    cko : linkage BIT ;	-- cko
+    ck : linkage BIT 	-- ck
+    );
+  END COMPONENT;
+
+  COMPONENT po_sp
+    port (
+    vssi : linkage BIT ;	-- vssi
+    vsse : linkage BIT ;	-- vsse
+    vddi : linkage BIT ;	-- vddi
+    vdde : linkage BIT ;	-- vdde
+    pad : linkage BIT ;	-- pad
+    i : linkage BIT ;	-- i
+    ck : linkage BIT 	-- ck
+    );
+  END COMPONENT;
+
+  COMPONENT pck_sp
+    port (
+    vssi : linkage BIT ;	-- vssi
+    vsse : linkage BIT ;	-- vsse
+    vddi : linkage BIT ;	-- vddi
+    vdde : linkage BIT ;	-- vdde
+    pad : linkage BIT ;	-- pad
+    ck : linkage BIT 	-- ck
+    );
+  END COMPONENT;
+
+  COMPONENT pi_sp
+    port (
+    vssi : linkage BIT ;	-- vssi
+    vsse : linkage BIT ;	-- vsse
+    vddi : linkage BIT ;	-- vddi
+    vdde : linkage BIT ;	-- vdde
+    t : linkage BIT ;	-- t
+    pad : linkage BIT ;	-- pad
+    ck : linkage BIT 	-- ck
+    );
+  END COMPONENT;
+
+  COMPONENT adac_core
+    port (
+    vss : linkage BIT ;	-- vss
+    vdd : linkage BIT ;	-- vdd
+    sel1 : linkage BIT ;	-- sel1
+    sel0 : linkage BIT ;	-- sel0
+    s : linkage BIT_VECTOR(3 DOWNTO 0) ;	-- s
+    clk : linkage BIT ;	-- clk
+    c_4 : linkage BIT ;	-- c_4
+    a : linkage BIT_VECTOR(3 DOWNTO 0) 	-- a
+    );
+  END COMPONENT;
+
+  SIGNAL ai_1 : BIT;	-- ai 1
+  SIGNAL ai_0 : BIT;	-- ai 0
+  SIGNAL ai_2 : BIT;	-- ai 2
+  SIGNAL sel1i : BIT;	-- sel1i
+  SIGNAL sel0i : BIT;	-- sel0i
+  SIGNAL ai_3 : BIT;	-- ai 3
+  SIGNAL ckc : BIT;	-- ckc
+  SIGNAL c_4i : BIT;	-- c_4i
+  SIGNAL si_0 : BIT;	-- si 0
+  SIGNAL si_1 : BIT;	-- si 1
+  SIGNAL si_2 : BIT;	-- si 2
+  SIGNAL si_3 : BIT;	-- si 3
+  SIGNAL coin_v_361_v_312_v_361_v_302 : BIT;	-- coin_-361_-312_-361_-302
+
+BEGIN
+
+  p_vddick0 : pvddick_sp
+    PORT MAP (
+    ck => coin_v_361_v_312_v_361_v_302,
+    cko => ckc,
+    vdde => vdde,
+    vddi => vdd,
+    vsse => vsse,
+    vssi => vss);
+  p_vddeck0 : pvddeck_sp
+    PORT MAP (
+    ck => coin_v_361_v_312_v_361_v_302,
+    cko => ckc,
+    vdde => vdde,
+    vddi => vdd,
+    vsse => vsse,
+    vssi => vss);
+  p_vssick0 : pvssick_sp
+    PORT MAP (
+    ck => coin_v_361_v_312_v_361_v_302,
+    cko => ckc,
+    vdde => vdde,
+    vddi => vdd,
+    vsse => vsse,
+    vssi => vss);
+  p_vsseck0 : pvsseck_sp
+    PORT MAP (
+    ck => coin_v_361_v_312_v_361_v_302,
+    cko => ckc,
+    vdde => vdde,
+    vddi => vdd,
+    vsse => vsse,
+    vssi => vss);
+  p_s3 : po_sp
+    PORT MAP (
+    ck => coin_v_361_v_312_v_361_v_302,
+    i => si_3,
+    pad => s(3),
+    vdde => vdde,
+    vddi => vdd,
+    vsse => vsse,
+    vssi => vss);
+  p_s2 : po_sp
+    PORT MAP (
+    ck => coin_v_361_v_312_v_361_v_302,
+    i => si_2,
+    pad => s(2),
+    vdde => vdde,
+    vddi => vdd,
+    vsse => vsse,
+    vssi => vss);
+  p_s1 : po_sp
+    PORT MAP (
+    ck => coin_v_361_v_312_v_361_v_302,
+    i => si_1,
+    pad => s(1),
+    vdde => vdde,
+    vddi => vdd,
+    vsse => vsse,
+    vssi => vss);
+  p_s0 : po_sp
+    PORT MAP (
+    ck => coin_v_361_v_312_v_361_v_302,
+    i => si_0,
+    pad => s(0),
+    vdde => vdde,
+    vddi => vdd,
+    vsse => vsse,
+    vssi => vss);
+  p_c_4 : po_sp
+    PORT MAP (
+    ck => coin_v_361_v_312_v_361_v_302,
+    i => c_4i,
+    pad => c_4,
+    vdde => vdde,
+    vddi => vdd,
+    vsse => vsse,
+    vssi => vss);
+  p_ck : pck_sp
+    PORT MAP (
+    ck => coin_v_361_v_312_v_361_v_302,
+    pad => clk,
+    vdde => vdde,
+    vddi => vdd,
+    vsse => vsse,
+    vssi => vss);
+  p_a3 : pi_sp
+    PORT MAP (
+    ck => coin_v_361_v_312_v_361_v_302,
+    pad => a(3),
+    t => ai_3,
+    vdde => vdde,
+    vddi => vdd,
+    vsse => vsse,
+    vssi => vss);
+  p_a2 : pi_sp
+    PORT MAP (
+    ck => coin_v_361_v_312_v_361_v_302,
+    pad => a(2),
+    t => ai_2,
+    vdde => vdde,
+    vddi => vdd,
+    vsse => vsse,
+    vssi => vss);
+  p_a1 : pi_sp
+    PORT MAP (
+    ck => coin_v_361_v_312_v_361_v_302,
+    pad => a(1),
+    t => ai_1,
+    vdde => vdde,
+    vddi => vdd,
+    vsse => vsse,
+    vssi => vss);
+  p_a0 : pi_sp
+    PORT MAP (
+    ck => coin_v_361_v_312_v_361_v_302,
+    pad => a(0),
+    t => ai_0,
+    vdde => vdde,
+    vddi => vdd,
+    vsse => vsse,
+    vssi => vss);
+  p_sel0 : pi_sp
+    PORT MAP (
+    ck => coin_v_361_v_312_v_361_v_302,
+    pad => sel0,
+    t => sel0i,
+    vdde => vdde,
+    vddi => vdd,
+    vsse => vsse,
+    vssi => vss);
+  p_sel1 : pi_sp
+    PORT MAP (
+    ck => coin_v_361_v_312_v_361_v_302,
+    pad => sel1,
+    t => sel1i,
+    vdde => vdde,
+    vddi => vdd,
+    vsse => vsse,
+    vssi => vss);
+  core : adac_core
+    PORT MAP (
+    a => ai_3& ai_2& ai_1& ai_0,
+    c_4 => c_4i,
+    clk => ckc,
+    s => si_3& si_2& si_1& si_0,
+    sel0 => sel0i,
+    sel1 => sel1i,
+    vdd => vdd,
+    vss => vss);
+
+end VST;

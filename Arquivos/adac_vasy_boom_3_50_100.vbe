@@ -1,0 +1,93 @@
+-- VHDL data flow description generated from `adac_vasy_boom_3_50_100`
+--		date : Wed Apr  1 20:33:19 2020
+
+
+-- Entity Declaration
+
+ENTITY adac_vasy_boom_3_50_100 IS
+  PORT (
+  a : in bit_vector(3 DOWNTO 0) ;	-- a
+  sel0 : in BIT;	-- sel0
+  sel1 : in BIT;	-- sel1
+  clk : in BIT;	-- clk
+  s : out bit_vector(3 DOWNTO 0) ;	-- s
+  c_4 : out BIT;	-- c_4
+  vdd : in BIT;	-- vdd
+  vss : in BIT	-- vss
+  );
+END adac_vasy_boom_3_50_100;
+
+
+-- Architecture Declaration
+
+ARCHITECTURE behaviour_data_flow OF adac_vasy_boom_3_50_100 IS
+  SIGNAL acumulador : REG_VECTOR(3 DOWNTO 0) REGISTER;	-- acumulador
+  SIGNAL aux3 : BIT;		-- aux3
+  SIGNAL aux5 : BIT;		-- aux5
+  SIGNAL aux8 : BIT;		-- aux8
+  SIGNAL aux12 : BIT;		-- aux12
+  SIGNAL aux15 : BIT;		-- aux15
+  SIGNAL aux17 : BIT;		-- aux17
+  SIGNAL aux22 : BIT;		-- aux22
+  SIGNAL aux25 : BIT;		-- aux25
+  SIGNAL aux32 : BIT;		-- aux32
+  SIGNAL aux35 : BIT;		-- aux35
+  SIGNAL aux42 : BIT;		-- aux42
+  SIGNAL aux45 : BIT;		-- aux45
+  SIGNAL aux52 : BIT;		-- aux52
+
+BEGIN
+  aux52 <= (((((aux17 XOR aux45) AND sel0) OR ((aux8 XOR 
+aux45) AND NOT(sel0))) AND sel1) OR ((a(3) XOR sel0) 
+AND NOT(sel1)));
+  aux45 <= (acumulador(3) XOR a(3));
+  aux42 <= (((((aux15 XOR aux35) AND sel0) OR ((aux5 XOR 
+aux35) AND NOT(sel0))) AND sel1) OR ((a(2) XOR sel0) 
+AND NOT(sel1)));
+  aux35 <= (a(2) XOR acumulador(2));
+  aux32 <= (((((aux12 XOR aux25) AND sel0) OR ((aux3 XOR 
+aux25) AND NOT(sel0))) AND sel1) OR ((a(1) XOR sel0) 
+AND NOT(sel1)));
+  aux25 <= (a(1) XOR acumulador(1));
+  aux22 <= (((a(0) XOR acumulador(0)) AND sel1) OR ((a(0) 
+XOR sel0) AND NOT(sel1)));
+  aux17 <= NOT((NOT(aux15) AND (acumulador(2) OR NOT(a(2))))
+ OR (acumulador(2) AND NOT(a(2))));
+  aux15 <= NOT((acumulador(1) OR NOT(a(1))) AND (NOT(aux12) 
+OR (acumulador(1) AND NOT(a(1)))));
+  aux12 <= NOT(NOT(a(0)) OR acumulador(0));
+  aux8 <= ((acumulador(2) OR a(2)) AND (aux5 OR (
+acumulador(2) AND a(2))));
+  aux5 <= ((aux3 AND (acumulador(1) OR a(1))) OR (
+acumulador(1) AND a(1)));
+  aux3 <= (a(0) AND acumulador(0));
+  label0 : BLOCK ((NOT((clk'STABLE)) AND clk) = '1')
+  BEGIN
+    acumulador (0) <= GUARDED aux22;
+  END BLOCK label0;
+  label1 : BLOCK ((NOT((clk'STABLE)) AND clk) = '1')
+  BEGIN
+    acumulador (1) <= GUARDED aux32;
+  END BLOCK label1;
+  label2 : BLOCK ((NOT((clk'STABLE)) AND clk) = '1')
+  BEGIN
+    acumulador (2) <= GUARDED aux42;
+  END BLOCK label2;
+  label3 : BLOCK ((NOT((clk'STABLE)) AND clk) = '1')
+  BEGIN
+    acumulador (3) <= GUARDED aux52;
+  END BLOCK label3;
+
+c_4 <= (((NOT(a(3)) OR acumulador(3)) AND (NOT(aux17) OR
+ (NOT(a(3)) AND acumulador(3))) AND sel0) OR (((
+aux8 AND (a(3) OR acumulador(3))) OR (a(3) AND 
+acumulador(3))) AND NOT(sel0)));
+
+s (0) <= aux22;
+
+s (1) <= aux32;
+
+s (2) <= aux42;
+
+s (3) <= aux52;
+END;
